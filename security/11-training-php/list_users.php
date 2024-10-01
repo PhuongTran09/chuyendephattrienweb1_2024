@@ -3,7 +3,7 @@
 session_start();
 
 if (empty($_SESSION['csrf_token'])) {
-    $_SESSION['csrf_token'] = bin2hex(random_bytes(32)); // Tạo token CSRF ngẫu nhiên
+    $_SESSION['csrf_token'] = bin2hex(random_bytes(64)); // Tạo token CSRF ngẫu nhiên
 }
 
 require_once 'models/UserModel.php';
@@ -45,8 +45,8 @@ $users = $userModel->getUsers($params);
                 <tbody>
                     <?php foreach ($users as $user) {
                         $id = $user['id'];
-                        $encoded_id = base64_encode($id);
-                        $csrf_token = $_SESSION['csrf_token']; // Lấy CSRF Token từ session
+                        $encode = base64_encode($id);
+                        $csrf_token = $_SESSION['csrf_token']; 
                         ?>
                         <tr>
                             <th scope="row"><?php echo $user['id'] ?></th>
@@ -54,7 +54,7 @@ $users = $userModel->getUsers($params);
                             <td><?php echo $user['fullname'] ?></td>
                             <td><?php echo $user['type'] ?></td>
                             <td>
-                                <a href="form_user.php?id=<?php echo  $encoded_id ?>">
+                                <a href="form_user.php?id=<?php echo  $encode ?>">
                                     <i class="fa fa-pencil-square-o" aria-hidden="true" title="Update"></i>
                                 </a>
                                 <a href="view_user.php?id=<?php echo $user['id'] ?>">

@@ -12,18 +12,18 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
             // Thực hiện xóa người dùng
             if ($userModel->deleteUserById($id)) {
-                $_SESSION['message'] = "Xóa người dùng thành công!";
+                $_SESSION['message'] = "Delete user success!";
             } else {
-                $_SESSION['message'] = "Xóa người dùng thất bại.";
+                $_SESSION['message'] = "Delete user faild.";
             }
         } else {
-            $_SESSION['message'] = "CSRF Token không hợp lệ.";
+            $_SESSION['message'] = "CSRF Token not valid.";
         }
     } else {
-        $_SESSION['message'] = "Yêu cầu không hợp lệ.";
+        $_SESSION['message'] = "Request not valid.";
     }
 } else {
-    $_SESSION['message'] = "Yêu cầu không hợp lệ.";
+    $_SESSION['message'] = "Request not valid.";
 }
 
 header('location: list_users.php');
