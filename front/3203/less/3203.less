@@ -1,0 +1,76 @@
+// Define colors and other variables for easier maintenance
+@primary-color: black;
+@hover-color: #000;
+@font-size-small: 13px;
+@font-size-icons: 18px;
+@badge-background: black;
+@badge-color: rgb(255, 255, 255);
+@badge-font-size: 0.6rem;
+
+.navbar-brand img {
+    height: 50px;
+    width: auto;
+}
+
+.note {
+    text-align: center;
+    font-size: 14px;
+    padding: 10px 0;
+    border-bottom: 1px solid @primary-color; // Using variable
+}
+
+.navbar-nav {
+    .nav-link {
+        text-transform: uppercase;
+        font-size: @font-size-small; // Using variable
+        margin-right: 15px;
+        position: relative;
+        font-weight: both;
+
+        &:hover,
+        &.active {
+            color: @hover-color; // Using variable
+        }
+
+        // Styling the underline with the ::after pseudo-element
+        &::after {
+            content: '';
+            display: block;
+            width: 0;
+            height: 2px;
+            background: @hover-color; // Using variable
+            transition: width 0.3s ease-in-out;
+            position: absolute;
+            left: 0;
+        }
+
+        &:hover::after,
+        &.active::after {
+            width: 100%;
+        }
+    }
+}
+
+.navbar .icons {
+    i {
+        font-size: @font-size-icons; // Using variable
+        margin-right: 15px;
+    }
+
+    a {
+        color: #ffffff;
+        font-size: 5px;
+        padding: 5px;
+        transition: color 0.3s ease-in-out;
+    }
+
+    .badge {
+        position: absolute;
+        top: -0.5rem;
+        right: -0.4rem;
+        background-color: @badge-background; // Using variable
+        border-radius: 50%;
+        color: @badge-color; // Using variable
+        font-size: @badge-font-size; // Using variable
+    }
+}
